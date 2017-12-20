@@ -9,14 +9,14 @@ const Book = ({ data, onSelect }) => (
         style={{
           width: 128,
           height: 193,
-          backgroundImage: `url(${data.image})`
+          backgroundImage: `url(${data.imageLinks.smallThumbnail})`
         }}/>
       <div className="book-shelf-changer">
         <select
-          value={data.status}
+          value={data.shelf}
           onChange={(event) => (onSelect(data, event.target.value))}>
           <option value="none" disabled>Move to...</option>
-          <option value="reading">Currently Reading</option>
+          <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
           <option value="read">Read</option>
           <option value="none">None</option>
@@ -24,7 +24,7 @@ const Book = ({ data, onSelect }) => (
       </div>
     </div>
     <div className="book-title">{data.title}</div>
-    <div className="book-authors">{data.authors}</div>
+    <div className="book-authors">{data.authors.join(', ')}</div>
   </div>
 );
 

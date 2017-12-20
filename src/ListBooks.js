@@ -11,17 +11,17 @@ const ListBooks = ({ books, onSelect, onOpenSearch }) => (
       <div>
         <BookShelf
           title="Currently Reading"
-          books={books.filter(({ status }) => (status === 'reading'))}
+          books={books.filter(({ shelf }) => (shelf === 'currentlyReading'))}
           onSelect={onSelect}
         />
         <BookShelf
           title="Want to Read"
-          books={books.filter(({ status }) => (status === 'wantToRead'))}
+          books={books.filter(({ shelf }) => (shelf === 'wantToRead'))}
           onSelect={onSelect}
         />
         <BookShelf
           title="Read"
-          books={books.filter(({ status }) => (status === 'read'))}
+          books={books.filter(({ shelf }) => (shelf === 'read'))}
           onSelect={onSelect}
         />
       </div>

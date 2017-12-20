@@ -8,7 +8,7 @@ const BookShelf = ({ title, books, onSelect}) => (
     <div className="bookshelf-books">
       <ol className="books-grid">
         {books.map((book) => (
-          <li key={book.title}>
+          <li key={book.id}>
             <Book
               data={book}
               onSelect={onSelect}
