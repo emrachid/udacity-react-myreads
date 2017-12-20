@@ -32,7 +32,7 @@ const ListBooks = ({ books, onSelect, onOpenSearch }) => (
   </div>
 );
 
-ListBooks.PropTypes = {
+ListBooks.propTypes = {
   books: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
   onOpenSearch: PropTypes.func.isRequired

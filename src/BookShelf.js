@@ -20,7 +20,7 @@ const BookShelf = ({ title, books, onSelect}) => (
   </div>
 );
 
-BookShelf.PropTypes = {
+BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired
