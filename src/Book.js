@@ -13,9 +13,13 @@ class Book extends React.Component {
               backgroundImage: `url(${this.props.data.image})`
             }}/>
           <div className="book-shelf-changer">
-            <select>
+            <select
+              value={this.props.data.status}
+              onChange={(event) => (
+                this.props.onSelect(this.props.data, event.target.value)
+              )}>
               <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
+              <option value="reading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
               <option value="none">None</option>

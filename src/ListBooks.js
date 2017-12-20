@@ -14,15 +14,18 @@ class ListBooks extends React.Component {
           <div>
             <BookShelf
               title="Currently Reading"
-              books={books.filter(({ state }) => (state === 'reading'))}
+              books={books.filter(({ status }) => (status === 'reading'))}
+              onSelect={this.props.onSelect}
             />
             <BookShelf
               title="Want to Read"
-              books={books.filter(({ state }) => (state === 'want-to-read'))}
+              books={books.filter(({ status }) => (status === 'wantToRead'))}
+              onSelect={this.props.onSelect}
             />
             <BookShelf
               title="Read"
-              books={books.filter(({ state }) => (state === 'read'))}
+              books={books.filter(({ status }) => (status === 'read'))}
+              onSelect={this.props.onSelect}
             />
           </div>
         </div>
