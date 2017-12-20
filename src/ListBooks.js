@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
 const ListBooks = ({ books, onSelect, onOpenSearch }) => (
@@ -29,6 +30,12 @@ const ListBooks = ({ books, onSelect, onOpenSearch }) => (
       <a onClick={onOpenSearch}>Add a book</a>
     </div>
   </div>
-)
+);
+
+ListBooks.PropTypes = {
+  books: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onOpenSearch: PropTypes.func.isRequired
+};
 
 export default ListBooks

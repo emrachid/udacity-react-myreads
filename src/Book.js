@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Book = ({ data, onSelect }) => (
   <div className="book">
@@ -26,5 +27,10 @@ const Book = ({ data, onSelect }) => (
     <div className="book-authors">{data.authors}</div>
   </div>
 );
+
+Book.propTypes = {
+  data: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired
+};
 
 export default Book
