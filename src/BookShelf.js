@@ -1,26 +1,22 @@
 import React from 'react'
 import Book from './Book'
 
-class BookShelf extends React.Component {
-  render() {
-    return (
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.title}</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {this.props.books.map((book) => (
-              <li key={book.title}>
-                <Book
-                  data={book}
-                  onSelect={this.props.onSelect}
-                />
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    )
-  }
-}
+const BookShelf = ({ title, books, onSelect}) => (
+  <div className="bookshelf">
+    <h2 className="bookshelf-title">{title}</h2>
+    <div className="bookshelf-books">
+      <ol className="books-grid">
+        {books.map((book) => (
+          <li key={book.title}>
+            <Book
+              data={book}
+              onSelect={onSelect}
+            />
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+)
 
 export default BookShelf
