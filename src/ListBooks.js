@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
-const ListBooks = ({ books, onSelect, onOpenSearch }) => (
+const ListBooks = ({ booksOnShelf, onSelect, onOpenSearch }) => (
   <div className="list-books">
     <div className="list-books-title">
       <h1>MyReads</h1>
@@ -11,17 +11,17 @@ const ListBooks = ({ books, onSelect, onOpenSearch }) => (
       <div>
         <BookShelf
           title="Currently Reading"
-          books={books.filter(({ shelf }) => (shelf === 'currentlyReading'))}
+          books={booksOnShelf.filter(({ shelf }) => (shelf === 'currentlyReading'))}
           onSelect={onSelect}
         />
         <BookShelf
           title="Want to Read"
-          books={books.filter(({ shelf }) => (shelf === 'wantToRead'))}
+          books={booksOnShelf.filter(({ shelf }) => (shelf === 'wantToRead'))}
           onSelect={onSelect}
         />
         <BookShelf
           title="Read"
-          books={books.filter(({ shelf }) => (shelf === 'read'))}
+          books={booksOnShelf.filter(({ shelf }) => (shelf === 'read'))}
           onSelect={onSelect}
         />
       </div>
@@ -33,7 +33,7 @@ const ListBooks = ({ books, onSelect, onOpenSearch }) => (
 );
 
 ListBooks.propTypes = {
-  books: PropTypes.array.isRequired,
+  booksOnShelf: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
   onOpenSearch: PropTypes.func.isRequired
 };

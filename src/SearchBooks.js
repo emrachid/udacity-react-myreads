@@ -1,32 +1,58 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
 import Book from './Book'
+import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends React.Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    booksOnShelf: PropTypes.array.isRequired,
     onSelect: PropTypes.func.isRequired,
     onCloseSearch: PropTypes.func.isRequired
   }
 
   state = {
-    query: ''
+    query: '',
+    queryResult: []
   }
 
   updateQuery = (query) => {
-    this.setState({ query });
+    console.log(query);
+    if (query) {
+      this.setState({ query });
+      BooksAPI.search(query).then((result) => {
+        console.log(result);
+        if (result && !result.error) {
+          this.setState({ queryResult: result });
+        } else {
+          this.setState({ queryResult: [] });
+        }
+      }).catch((e) => {
+        this.setState({ queryResult: [] });
+        console.log(e);
+      });
+    } else {
+      this.setState({ query: [] });
+      this.setState({ queryResult: [] });
+    }
   }
 
   render() {
-    const { books, onSelect, onCloseSearch } = this.props;
+    const { booksOnShelf, onSelect, onCloseSearch } = this.props;
 
-    let showingBooks = books;
-    if (this.state.query) {
-      const match = new RegExp(escapeRegExp(this.state.query), 'i');
-      showingBooks = books.filter((book) => (
-        match.test(book.title) || match.test(book.authors)
-      ));
+    let showingBooks = this.state.queryResult;
+    if (this.state.query && showingBooks) {
+      showingBooks.forEach((showingBook) => {
+        let bookFoundOnShelf = booksOnShelf.find((bookOnShelf) => (
+          bookOnShelf.id === showingBook.id)
+        );
+        if (bookFoundOnShelf) {
+          // If books returned from query is found on shelf, add shelf value on them.
+          showingBook.shelf = bookFoundOnShelf.shelf;
+          console.log(showingBook);
+        } else {
+          showingBook.shelf = 'none';
+        }
+      });
     }
 
     return (
@@ -52,8 +78,8 @@ class SearchBooks extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {showingBooks.map((book) => (
-              <li key={book.title}>
+            {showingBooks && showingBooks.map((book) => (
+              <li key={book.id}>
                 <Book data={book} onSelect={onSelect}/>
               </li>
             ))}
