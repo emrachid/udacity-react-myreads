@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
-const ListBooks = ({ booksOnShelf, onSelect, onOpenSearch }) => (
+const ListBooks = ({ booksOnShelf, onSelect }) => (
   <div className="list-books">
     <div className="list-books-title">
       <h1>MyReads</h1>
@@ -27,15 +28,14 @@ const ListBooks = ({ booksOnShelf, onSelect, onOpenSearch }) => (
       </div>
     </div>
     <div className="open-search">
-      <a onClick={onOpenSearch}>Add a book</a>
+      <Link to="/search">Add a book</Link>
     </div>
   </div>
 );
 
 ListBooks.propTypes = {
   booksOnShelf: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  onOpenSearch: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired
 };
 
 export default ListBooks

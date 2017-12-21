@@ -1,4 +1,6 @@
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks'
@@ -6,13 +8,6 @@ import SearchBooks from './SearchBooks'
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
     books: []
   }
 
@@ -22,10 +17,6 @@ class BooksApp extends React.Component {
       this.setState({ books });
     }).catch(console.log);
   }
-
-  openSearch = () => this.setState({ showSearchPage: true });
-
-  closeSearch = () => this.setState({ showSearchPage: false });
 
   selectBook = (book, value) => {
     let { books } = this.state;
@@ -43,21 +34,22 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBooks
-            booksOnShelf={this.state.books}
-            onCloseSearch={this.closeSearch}
-            onSelect={this.selectBook}
-          />
-        ) : (
-          <ListBooks
-            booksOnShelf={this.state.books}
-            onOpenSearch={this.openSearch}
-            onSelect={this.selectBook}
-          />
-        )}
-      </div>
+      <BrowserRouter>
+        <div className="app">
+          <Route path="/search" render={() => (
+            <SearchBooks
+              booksOnShelf={this.state.books}
+              onSelect={this.selectBook}
+            />
+          )}/>
+          <Route exact path="/" render={() => (
+            <ListBooks
+              booksOnShelf={this.state.books}
+              onSelect={this.selectBook}
+            />
+          )}/>
+        </div>
+      </BrowserRouter>
     )
   }
 }
