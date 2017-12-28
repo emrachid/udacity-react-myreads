@@ -19,18 +19,19 @@ class BooksApp extends React.Component {
   }
 
   selectBook = (book, value) => {
-    let { books } = this.state;
-    books = books.filter((b) => b.id !== book.id);
-    if (value !== 'none') {
-      books = books.concat({
-      ...book,
-      shelf: value
-      });
-    }
-//    console.log(books);
-    this.setState({ books });
-    BooksAPI.update(book, value).then(console.log).catch(console.log);
-  };
+    BooksAPI.update(book, value).then(() => {
+      let { books } = this.state;
+      books = books.filter((b) => b.id !== book.id);
+      if (value !== 'none') {
+        books = books.concat({
+        ...book,
+        shelf: value
+        });
+      }
+  //    console.log(books);
+      this.setState({ books });
+    }).catch(console.log);
+  }
 
   render() {
     return (
