@@ -2,7 +2,7 @@
 
 This is the delivery for the final assessment project for Udacity's React Fundamentals course. This is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read.
 
-App Functionality
+### App Functionality
 
 In this application, the main page displays a list of "shelves" (i.e. categories), each of which contains a number of books. The three shelves are:
 - Currently Reading
@@ -21,9 +21,7 @@ The search page also has a link to / (the root URL), which leads back to the mai
 
 When you navigate back to the main page from the search page, you should instantly see all of the selections you made on the search page in your library.
 
-## TL;DR
-
-To get started:
+## Get started
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
@@ -109,3 +107,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This repository is for React Udacity course. Therefore, pull requests are not allowed.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+The contents of this repository are covered under the [MIT License](LICENSE).
