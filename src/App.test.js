@@ -1,16 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import './__mocks__/localStorage'
 
-/** 
- This course is not designed to teach Test Driven Development. 
- Feel free to use this file to test your application, but it 
+import React from 'react'
+import { shallow, mount } from 'enzyme'
+import App from './App'
+/**
+ This course is not designed to teach Test Driven Development.
+ Feel free to use this file to test your application, but it
  is not required.
 **/
 
-it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
+describe('<App />', () => {
+//  global.localStorage.token = Math.random().toString(36).substr(-8);
+  it('shallow renders without crashing', () => {
+    expect(shallow(<App />))
+  })
+
+  it('mount renders without crashing', () => {
+    expect(mount(<App />))
+  })
 })
-
-
